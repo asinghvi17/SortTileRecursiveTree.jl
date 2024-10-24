@@ -17,6 +17,8 @@ struct STRtree{T}
     end
 end
 
+GI.extent(n::STRtree) = GI.extent(n.rootnode)
+
 
 struct STRNode{E,T}
     extent::E
@@ -28,7 +30,6 @@ struct STRLeafNode{E}
     extents::E
     indices::Vector{Int}
 end
-
 
 GI.extent(n::STRNode) = n.extent
 GI.extent(n::STRLeafNode) = foldl(Extents.union, n.extents)
